@@ -1,8 +1,9 @@
 import streamlit as st
 import seaborn as sns
+import plotly.express as px
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import plotly.graph_objects as go
 
 def run():
     # title dan deskripsi pendek
@@ -42,37 +43,35 @@ def run():
     hyundai = dataset[['year', 'price']][dataset['company'] == "Hyundai"].groupby('year').mean()
     bmw = dataset[['year', 'price']][dataset['company'] == "BMW"].groupby('year').mean()
 
-    # melakukan index ulang supaya range x sama
+    # Reindex dataset dengan value tahun
     audi = audi.reindex(year.index, fill_value=0)
     toyota = toyota.reindex(year.index, fill_value=0)
     hyundai = hyundai.reindex(year.index, fill_value=0)
     bmw = bmw.reindex(year.index, fill_value=0)
 
-    fig=plt.figure(figsize=(20, 7))
+    # membuat figure plotly
+    fig = go.Figure()
 
-    # Plot rata-rata semua mobil pertahun dengan garis
-    plt.plot(year.index, year['price'], label='All Cars', linestyle='-', color='cyan')
+    # Plot harga rata-rata berdasarkan tahun
+    fig.add_trace(go.Scatter(x=year.index, y=year['price'], mode='lines', name='All Cars', line=dict(color='cyan')))
 
-    # plot rata-rata per brand dengan warna garis yang berbeda
-    plt.plot(audi.index, audi['price'], label='Audi', linestyle='--', color='red')
-    plt.plot(toyota.index, toyota['price'], label='Toyota', linestyle='--', color='blue')
-    plt.plot(hyundai.index, hyundai['price'], label='Hyundai', linestyle='--', color='yellow')
-    plt.plot(bmw.index, bmw['price'], label='BMW', linestyle='--', color='black')
+    # Plot harga rata-rata berdasarkan brand
+    fig.add_trace(go.Scatter(x=audi.index, y=audi['price'], mode='lines', name='Audi', line=dict(color='red', dash='dash')))
+    fig.add_trace(go.Scatter(x=toyota.index, y=toyota['price'], mode='lines', name='Toyota', line=dict(color='blue', dash='dash')))
+    fig.add_trace(go.Scatter(x=hyundai.index, y=hyundai['price'], mode='lines', name='Hyundai', line=dict(color='yellow', dash='dash')))
+    fig.add_trace(go.Scatter(x=bmw.index, y=bmw['price'], mode='lines', name='BMW', line=dict(color='white', dash='dash')))
 
-    # modifikasi xticks
-    plt.xticks(year.index, labels=year.index, rotation=45)
-
-    # legend dengan posisi kiri atas
-    plt.legend(loc=2)
-
-    # title dan label
-    plt.title('Average Price by Year')
-    plt.xlabel('Year')
-    plt.ylabel('Average Price')
-    plt.grid(True)
+    # Customisasi plot
+    fig.update_layout(
+        title='Average Price by Year',
+        xaxis_title='Year',
+        yaxis_title='Average Price',
+        xaxis=dict(tickvals=year.index, ticktext=year.index, tickangle=45),
+        legend=dict(x=0, y=1)
+    )
 
     # Munculkan plot dan keterangan
-    st.pyplot(fig)
+    st.plotly_chart(fig)
     st.write('Dari chart di atas, kita bisa melihat bahwa:\n- Setiap perusahaan memiliki rata-rata yang berbeda dari tahun ke tahun.\n- Rata-rata harga pada semua perusahaan mengalami kenaikan yang mirip sebagaimana bertambahnya tahun. Ini menandakan semakin muda sebuah mobil, maka harga nya semakin tinggi.')
     st.markdown('---')
 
