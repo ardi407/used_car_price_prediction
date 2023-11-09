@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 
 # load pipelines dengan joblib
-pipe = joblib.load('pipelines.pkl')
+pipe = joblib.load('deployment/pipelines.pkl')
 
 # load dataset
-dataset = pd.read_csv('dataset.csv')
+dataset = pd.read_csv('deployment/dataset.csv')
 # buat fungsi untuk run
 def run():
     # buat judul halaman
