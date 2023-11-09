@@ -12,7 +12,7 @@ def run():
     st.markdown('---')
 
     #load dataset dan tampilkan dataset
-    dataset = pd.read_csv('dataset.csv')
+    dataset = pd.read_csv('deployment/dataset.csv')
     st.markdown("<h4 style='text-align: center; color: white;'>Dataset Preview</h4>", unsafe_allow_html=True)
     st.dataframe(dataset,hide_index=True, height=200, width=1000)
 
