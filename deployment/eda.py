@@ -80,7 +80,7 @@ def run():
     # figure
     fig=plt.figure(figsize=(7,5))
     #barplot
-    ax=sns.barplot(dataset, x='company', y='price', estimator='mean', palette='viridis')
+    ax=sns.barplot(dataset, x='company', y='price', estimator='mean')
     plt.bar_label(ax.containers[0], label_type='center', color='white') # bar label
     st.pyplot(fig) # tampilkan plot
     st.write('Terlihat bahwa company yang ada terbagi seperti terbagi menjadi 2 kelas. Kelas dengan rata-rata harga yang tinggi yaitu Audi dan BMW, lalu kelas dengan harga rata-rata yang rendah yaitu Toyota dan Hyundai.')
@@ -109,7 +109,7 @@ def run():
     st.markdown("<h3 style='text-align: center; color: white;'>Average Price berdasarkan Tipe Transmisi</h3>", unsafe_allow_html=True)
     #figure
     fig=plt.figure(figsize=(12,8))
-    ax=sns.barplot(dataset, x='transmission', y='price', estimator='mean', palette='viridis') # label
+    ax=sns.barplot(dataset, x='transmission', y='price', estimator='mean') # label
     plt.bar_label(ax.containers[0], label_type='center', fontsize=14) # bar label
     # tampilkan chart dan keterangan
     st.pyplot(fig)
@@ -120,7 +120,7 @@ def run():
     st.markdown("<h3 style='text-align: center; color: white;'>Rata-Rata Efisiensi Bahan Bakar berdasarkan Brand</h3>", unsafe_allow_html=True)
 
     fig = plt.figure(figsize=(10, 8)) #figure
-    ax=sns.barplot(dataset, x='company', y='mpg', estimator='mean', palette='viridis') # bar plot
+    ax=sns.barplot(dataset, x='company', y='mpg', estimator='mean') # bar plot
     plt.bar_label(ax.containers[0], label_type='center')
 
     # tampilkan chart dan keterangan
@@ -133,7 +133,7 @@ def run():
     st.markdown("<h3 style='text-align: center; color: white;'>Efisiensi Berdasarkan Transmission</h3>", unsafe_allow_html=True)
 
     fig=plt.figure(figsize=(10,6))
-    ax = sns.barplot(data=dataset, x='transmission', y='mpg', estimator='mean', palette='viridis') # barplot
+    ax = sns.barplot(data=dataset, x='transmission', y='mpg', estimator='mean') # barplot
     plt.bar_label(ax.containers[0], label_type='center') # bar label
     # tampilkan chart dan keterangan
     st.pyplot(fig)
