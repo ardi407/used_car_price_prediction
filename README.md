@@ -15,6 +15,8 @@ Milestone 2 is created to evaluate the Machine Learning concepts learned in Phas
 ## Frameworks in this project
 - Scikit-learn
 - Feature_engine
+- streamlit
+- plotly
 - Scipy
 - Joblib
 - Pandas
