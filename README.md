@@ -21,5 +21,7 @@ Milestone 2 is created to evaluate the Machine Learning concepts learned in Phas
 - Numpy
 - Matplotlib and Seaborn
 
+## Deployment
+Huggingface: https://huggingface.co/spaces/ardian407/used_car_predictions
 
 
